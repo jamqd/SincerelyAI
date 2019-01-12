@@ -2,7 +2,7 @@
 
 To create conda environment run the following command from the repo directory.
 
-`conda create env --name quora --file requirements.txt`
+`conda create --name quora --file requirements.txt`
 
 To activate environment run 
 
