@@ -1,0 +1,17 @@
+<DOCTYPE html>
+  {% load static %}
+    <html>
+        <head>
+            <title>answer</title>
+            <link rel="stylesheet" href="{% static 'css/answer.css' %}">
+            <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+        </head>
+        <body>
+            <p>{{ Questions }}</p>
+            <form method="get" >
+                {% csrf_token %}
+                {{ lForm }}
+                <button type="submit" class="btn btn-default">Again</button>
+            </form>
+        </body>
+    </html>

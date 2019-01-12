@@ -1,0 +1,15 @@
+{
+    "name": "Sincerely, AI",
+    "version": "0.2",
+    "description": "Are sentences sincere?",
+    "permissions": ["activeTab","declarativeContent","storage"],
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": false  
+    },
+    "options_page": "options.html",
+    "page_action": {
+        "default_popup": "popup.html"
+    },
+    "manifest_version": 2
+}
