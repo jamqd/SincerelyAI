@@ -34,5 +34,3 @@ def result(request):
         return render(request, "questionQuery/question.html", {'form': form})
 
     return HttpResponse(Questions.objects.last())
-
-
