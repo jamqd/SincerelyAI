@@ -1,6 +1,13 @@
 from django.urls import path
 from . import views
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+urlpatterns = [
+    path('', views.index, name='index'),
+=======
+=======
+>>>>>>> 751c87058daf389b97484113501dbb29629abc22
 app_name = 'add'
 urlpatterns = [
     # ex: /add/
@@ -14,5 +21,9 @@ urlpatterns = [
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
     # ex: /add/5/vote/
     path('<int:question_id>/vote/', views.vote, name='vote'),
+<<<<<<< HEAD
+>>>>>>> 751c87058daf389b97484113501dbb29629abc22
+=======
+>>>>>>> 751c87058daf389b97484113501dbb29629abc22
 ]
 
