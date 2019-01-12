@@ -14,9 +14,6 @@ import json
 
 @csrf_exempt
 def search(request):
-    if request.method == "POST":
-        print(request.POST)
-        form = MyQuestionForm(request.POST)
 
     if request.method == "POST":
         print("post request")
@@ -25,14 +22,12 @@ def search(request):
         #embed = hub.Module(module_url)
         #print("downloaded USE TF hub module")
 
-
         form = MyQuestionForm(request.POST)
-
-        print(request.body.decode('utf-8'))
-        #b = request.body.decode('utf-8')
-        #print(request.POST.get('')) #returns something
-        #return b
-        return HttpResponse(request.body.decode('utf-8'))
+        
+        if not request.POST.get('question_query'):
+            print("yaa?")
+            return HttpResponse(request.body.decode('utf-8'))
+        
 
         if form.is_valid():
             model_instance = form.save(commit=False)

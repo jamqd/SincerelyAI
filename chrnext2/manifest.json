@@ -9,5 +9,14 @@
     "permissions": [
         "activeTab",
         "http://*/"
-    ]
+    ],
+    "commands": {
+      "_execute_browser_action": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+O",
+          "mac": "Command+Shift+O"
+        },
+        "description": "Opens popup.html"
+      }
+    }
 }
