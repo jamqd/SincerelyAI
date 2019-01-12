@@ -7,6 +7,7 @@ import numpy as np
 
 reg = 0.01
 
+print("loading data")
 
 embeddingsR = pd.read_cs("data/question_embeddings_full.csv")
 embeddings = enbeddingsR.values
@@ -29,6 +30,7 @@ np.random.shuffle(combined)
 div1 = round(examples * 0.6)
 div2 = round(examples * 0.8)
 
+print("creating split datasets")
 embeddings_train, labels_train = combined[:div1, :512], combined[:div1, 512]
 embeddings_crossval, labels_crossval = combined[div1:div2, :512], combined[div1:div2, 512]
 embeddings_test, labels_test = combined[div2:, :512], combined[div2:, 512]
@@ -38,15 +40,15 @@ from keras.layers import Dense, Activation
 from keras import regularizers
 
 model = Sequential()
-model.add(Dense(512, activation='relu', input_dim=512, kernel_regularizer.l2(reg)))
-model.add(Dense(1024, activation='relu', kernel_regularizer.l2(reg)))
-model.add(Dense(256, activation='relu',kernel_regularizer.l2(reg)))
-model.add(Dense(1, activation='sigmoid', kernel_regularizer.l2(reg)))
+model.add(Dense(512, activation='relu', input_dim=512, kernel_regularizer=regularizer.l2(reg)))
+model.add(Dense(1024, activation='relu', kernel_regularizer=regularizer.l2(reg)))
+model.add(Dense(256, activation='relu', kernel_regularizer=regularizer.l2(reg)))
+model.add(Dense(1, activation='sigmoid', kernel_regularizer=regularizer.l2(reg)))
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics = ['accuracy'])
 
 
 
-model.summary()
+print(model.summary())
 
 #callback functions
 filepath="weights-improvement-{epoch:02d}-{val_acc:.2f}.h5"
