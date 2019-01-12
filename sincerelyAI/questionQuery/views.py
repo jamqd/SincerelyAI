@@ -28,11 +28,11 @@ def search(request):
 
         form = MyQuestionForm(request.POST)
 
-        print(request.body.decode('utf-8'))
-        #b = request.body.decode('utf-8')
-        #print(request.POST.get('')) #returns something
-        #return b
-        return HttpResponse(request.body.decode('utf-8'))
+        bb = request.body.decode('utf-8')
+        print(bb)
+        if bb:
+            print("not")
+            return HttpResponse(request.body.decode('utf-8'))
 
         if form.is_valid():
             model_instance = form.save(commit=False)
