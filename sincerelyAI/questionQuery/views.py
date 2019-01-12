@@ -1,6 +1,8 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django import forms
 from django.utils import timezone
+
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Questions
 from .forms import MyQuestionForm, LabelForm
@@ -31,8 +33,6 @@ def result(request):
         form = MyQuestionForm()
         return render(request, "questionQuery/question.html", {'form': form})
 
-
     return HttpResponse(Questions.objects.last())
 
 
-    
