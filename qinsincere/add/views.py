@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-from django.shortcuts import HttpResponse
-
-def index(request):
-    return HttpResponse("You're at the add index.")
-=======
-=======
->>>>>>> 751c87058daf389b97484113501dbb29629abc22
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import Http404, render, get_object_or_404
 from django.urls import reverse
@@ -55,9 +46,5 @@ def vote(request, question_id):
     else:
         selected_choice.votes += 1
         selected_choice.save()
-<<<<<<< HEAD
-        return HttpResponseRedirect(reverse('add:results', args=(question_id,)))
->>>>>>> 751c87058daf389b97484113501dbb29629abc22
-=======
-        return HttpResponseRedirect(reverse('add:results', args=(question_id,)))
->>>>>>> 751c87058daf389b97484113501dbb29629abc22
+    return HttpResponseRedirect(reverse('add:results', args=(question_id,)))
+
