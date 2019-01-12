@@ -14,9 +14,6 @@ import json
 
 @csrf_exempt
 def search(request):
-    if request.method == "POST":
-        print(request.POST)
-        form = MyQuestionForm(request.POST)
 
     if request.method == "POST":
         print("post request")
