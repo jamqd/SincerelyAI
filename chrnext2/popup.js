@@ -2,9 +2,9 @@ chrome.tabs.executeScript( {
     code: "window.getSelection().toString();"
 }, function(selection) {
     document.getElementById("output").innerHTML = selection[0];
-   
+
     const Httprq = new XMLHttpRequest();
-    const theurl = "http://localhost:7000/";
+    const theurl = "http://localhost:8000/";
     Httprq.open("POST", theurl, true);
 
     Httprq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

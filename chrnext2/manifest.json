@@ -7,6 +7,16 @@
         "default_popup": "popup.html"
     },
     "permissions": [
-        "activeTab"
-    ]
+        "activeTab",
+        "http://*/"
+    ],
+    "commands": {
+      "_execute_browser_action": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+S",
+          "mac": "Command+Shift+S"
+        },
+        "description": "Opens popup.html"
+      }
+    }
 }

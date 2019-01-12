@@ -8,13 +8,16 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Questions
 from .forms import MyQuestionForm, LabelForm
 
-import tensorflow as tf
-import tensorflow_hub as hub
+#import tensorflow as tf
+#import tensorflow_hub as hub
 import json
 
 @csrf_exempt
 def search(request):
-    
+    if request.method == "POST":
+        print(request.POST)
+        form = MyQuestionForm(request.POST)
+
     if request.method == "POST":
         print("post request")
         # Import the Universal Sentence Encoder's TF Hub module
@@ -25,19 +28,19 @@ def search(request):
 
         form = MyQuestionForm(request.POST)
 
-        print(request.body.decode('utf-8'))
-        #b = request.body.decode('utf-8')
-        #print(request.POST.get('')) #returns something
-        #return b
-        
-        
+        bb = request.body.decode('utf-8')
+        print(bb)
+        if bb:
+            print("not")
+            return HttpResponse(request.body.decode('utf-8'))
+
         if form.is_valid():
             model_instance = form.save(commit=False)
             model_instance.timestamp = timezone.now()
             model_instance.save() #save to this?
 
             que = [Questions.objects.last()]
-            
+
             #with tf.Session() as sess:
             #    sess.run([tf.global_variables_initializer(), tf.tables_initializer()])
                 # create question embeddings
@@ -50,8 +53,6 @@ def search(request):
             #print(form.cleaned_data['question_query']) #'answer':answer
             #return HttpResponseRedirect('/result/')
             #return redirect('/')
-
-        
 
     else:
 
