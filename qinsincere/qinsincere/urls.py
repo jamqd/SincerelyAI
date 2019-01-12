@@ -18,7 +18,11 @@ from django.urls import include, path
 
 urlpatterns = [
 <<<<<<< HEAD
+<<<<<<< HEAD
     path('polls/', include('polls.urls')),
+=======
+    path('add/', include('add.urls')),
+>>>>>>> 751c87058daf389b97484113501dbb29629abc22
 =======
     path('add/', include('add.urls')),
 >>>>>>> 751c87058daf389b97484113501dbb29629abc22

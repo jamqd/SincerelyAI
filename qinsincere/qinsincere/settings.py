@@ -32,7 +32,11 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
 <<<<<<< HEAD
+<<<<<<< HEAD
     'polls.apps.PollsConfig',
+=======
+    'add.apps.AddConfig',
+>>>>>>> 751c87058daf389b97484113501dbb29629abc22
 =======
     'add.apps.AddConfig',
 >>>>>>> 751c87058daf389b97484113501dbb29629abc22

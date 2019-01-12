@@ -1,8 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from django.db import models
 
 # Create your models here.
 =======
+=======
+>>>>>>> 751c87058daf389b97484113501dbb29629abc22
 import datetime
 
 from django.db import models
@@ -22,4 +25,7 @@ class Equation(models.Model):
     votes = models.IntegerField(default=0)
     def __str__(self):
         return self.choice_text
+<<<<<<< HEAD
+>>>>>>> 751c87058daf389b97484113501dbb29629abc22
+=======
 >>>>>>> 751c87058daf389b97484113501dbb29629abc22
