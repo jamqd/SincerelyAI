@@ -4,16 +4,20 @@ import matplotlib.pyplot as plt
 import keras
 import os
 import numpy as np
+from keras.models import Sequential
+from keras.layers import Dense, Activation
+from keras import regularizers
+from keras.callbacks import ModelCheckpoint
 
-reg = 0.01
+reg = 0.00
 
 print("loading data")
 
-embeddingsR = pd.read_csv("data/question_embeddings_full.csv")
+embeddingsR = pd.read_csv("question_embeddings0.csv")
 embeddings = embeddingsR.values
 
 labelsR = pd.read_csv("data/train.csv")
-labels = labelsR.values[:,2]
+labels = labelsR["target"].values
 
 examples = 0
 if(embeddings.shape[0] < labels.shape[0]):
@@ -24,8 +28,12 @@ else:
 embeddings = embeddings[:examples,:]
 labels = labels[:examples]
 
-combined = np.concatenate((embeddings, labels), axis=1)
+combined = np.zeros((examples,513))
+combined[:examples,:512] += embeddings
+combined[:examples,512] += labels
+
 np.random.shuffle(combined)
+
 
 div1 = round(examples * 0.6)
 div2 = round(examples * 0.8)
@@ -35,15 +43,12 @@ embeddings_train, labels_train = combined[:div1, :512], combined[:div1, 512]
 embeddings_crossval, labels_crossval = combined[div1:div2, :512], combined[div1:div2, 512]
 embeddings_test, labels_test = combined[div2:, :512], combined[div2:, 512]
 
-from keras.models import Sequential
-from keras.layers import Dense, Activation
-from keras import regularizers
 
 model = Sequential()
-model.add(Dense(512, activation='relu', input_dim=512, kernel_regularizer=regularizer.l2(reg)))
-model.add(Dense(1024, activation='relu', kernel_regularizer=regularizer.l2(reg)))
-model.add(Dense(256, activation='relu', kernel_regularizer=regularizer.l2(reg)))
-model.add(Dense(1, activation='sigmoid', kernel_regularizer=regularizer.l2(reg)))
+model.add(Dense(512, activation='relu', input_dim=512, kernel_regularizer=regularizers.l2(reg)))
+model.add(Dense(1024, activation='relu', kernel_regularizer=regularizers.l2(reg)))
+model.add(Dense(256, activation='relu', kernel_regularizer=regularizers.l2(reg)))
+model.add(Dense(1, activation='sigmoid', kernel_regularizer=regularizers.l2(reg)))
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics = ['accuracy'])
 
 
@@ -65,6 +70,8 @@ def precision(y_true, y_pred):
     true_positives = np.sum(y_true * y_pred)
     predicted_positives = np.sum(y_pred)
     precision = true_positives / predicted_positives
+    if(predicted_positives == 0):
+        return -1
     return precision
 
 
@@ -72,11 +79,17 @@ def recall(y_true, y_pred):
     true_positives = np.sum(y_true * y_pred)
     possible_positives = np.sum(y_true)
     recall = true_positives / possible_positives
+    if(possible_positives == 0):
+        return -1
     return recall
 
 
 def fmeasure(y_true, y_pred):
+    if(precision(y_true, y_pred) + recall(y_true, y_pred) == 0):
+        return -1
+    
     return 2 * precision(y_true, y_pred) * recall(y_true, y_pred)/ (precision(y_true, y_pred) + recall(y_true, y_pred))
+
 
 #crossvalidation set
 print("validation: ")
