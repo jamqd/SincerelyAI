@@ -22,14 +22,12 @@ def search(request):
         #embed = hub.Module(module_url)
         #print("downloaded USE TF hub module")
 
-
         form = MyQuestionForm(request.POST)
-
-        bb = request.body.decode('utf-8')
-        print(bb)
-        if bb:
-            print("not")
+        
+        if not request.POST.get('question_query'):
+            print("yaa?")
             return HttpResponse(request.body.decode('utf-8'))
+        
 
         if form.is_valid():
             model_instance = form.save(commit=False)
