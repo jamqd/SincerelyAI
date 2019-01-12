@@ -8,14 +8,14 @@ import numpy as np
 reg = 0.01
 
 
-embeddingsR = pd.read_cs("data/question_embeddings_full.csv")
-embeddings = enbeddingsR.values
+embeddingsR = pd.read_csv("data/question_embeddings_full.csv")
+embeddings = embeddingsR.values
 
 labelsR = pd.read_csv("data/train.csv")
 labels = labelsR.values[:,2]
 
 examples = 0
-if(embeddings.shape[0] < labels.shape):
+if(embeddings.shape[0] < labels.shape[0]):
     examples = embeddings.shape[0]
 else:
     examples = labels.shape
