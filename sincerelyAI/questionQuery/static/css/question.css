@@ -14,3 +14,16 @@ h1
 {
   padding-top: 256px;
 }
+
+label 
+{
+  padding: 10px;
+}
+
+button
+{
+  margin-left: 5px;
+  background: #222;
+  color: #FFF;
+  border-radius: 6px;
+}
