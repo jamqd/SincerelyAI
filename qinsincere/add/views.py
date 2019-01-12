@@ -4,6 +4,19 @@ from django.urls import reverse
 from django.views import generic
 
 from .models import Equation, Question
+from .forms import SentenceForm
+
+def get_name(request):
+    if request.method == 'POST':
+        form = SentenceForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/ml/')
+    else:
+        form = SentenceForm()
+    return render(request, 'ml.html', {'form': form})
+
+def index(request):
+    return render(request, 'add/sentence.html')
 
 class IndexView(generic.ListView):
     template_name = 'add/index.html'
