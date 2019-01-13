@@ -2,7 +2,7 @@
   {% load static %}
     <html>
         <head>
-            <title>edit</title>
+            <title>question</title>
             <link rel="stylesheet" href="{% static 'css/question.css' %}">
             <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
 
@@ -12,7 +12,6 @@
             <form method="post" >
                 {% csrf_token %}
                 {{ form }}
-
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
         </body>

@@ -51,15 +51,15 @@ def search(request):
             else:
                 lrep = "Sincere, with " + str((1-sin) * 100) + " percent confidence."
 
-            
+
             return HttpResponse(lrep)
-        
-        
+
+
 
         if form.is_valid():
             model_instance = form.save(commit=False)
             model_instance.timestamp = timezone.now()
-            model_instance.save() 
+            model_instance.save()
 
             que = [Questions.objects.last().question_query]
             question_embeddings = np.zeros((512,1))
@@ -92,4 +92,7 @@ def result(request):
         return render(request, "questionQuery/question.html", {'form': form})
 
     return HttpResponse(Questions.objects.last())
-    
+
+def history(request):
+    query_results = Questions.objects.all()
+    return render(request, "questionQuery/history.html", {'history': query_results[:10]})
