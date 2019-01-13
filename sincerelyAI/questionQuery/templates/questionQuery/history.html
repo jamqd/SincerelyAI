@@ -1,0 +1,21 @@
+<DOCTYPE html>
+  {% load static %}
+    <html>
+        <head>
+            <title>history</title>
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="{% static 'css/history.css' %}">
+            <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+        </head>
+        <body>
+            <h1> History </h1>
+                  {% for key in history %}
+                    {{ key.question_query }}<br/>
+                    <!--<td>{{ value }}</td>-->
+                  {% endfor %}
+            <form method="get" >
+                {% csrf_token %}
+                <button type="submit" class="btn btn-default">Back</button>
+            </form>
+        </body>
+    </html>

@@ -50,11 +50,10 @@ def search(request):
                 lrep = "Insincere, with " + str(sin * 100) + " percent confidence."
             else:
                 lrep = "Sincere, with " + str((1-sin) * 100) + " percent confidence."
-
             
             return HttpResponse(lrep)
         
-        
+    
 
         if form.is_valid():
             model_instance = form.save(commit=False)
@@ -92,4 +91,7 @@ def result(request):
         return render(request, "questionQuery/question.html", {'form': form})
 
     return HttpResponse(Questions.objects.last())
-    
+
+def history(request):
+    query_results = Questions.objects.all()
+    return render(request, "questionQuery/history.html", {'history': query_results[:10]})
