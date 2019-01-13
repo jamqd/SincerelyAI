@@ -17,6 +17,7 @@ To create conda environment run the following command from the repo directory.
 `conda create --name quora --file requirements.txt`
 
 
+
 To activate environment run 
 `source activate quora`
 
@@ -25,6 +26,9 @@ To activate environment run
 `conda install tensorflow-gpu`
 
 for significantly faster inference time.
+
+
+
 
 From the sincerelyAI directory run
 
