@@ -47,6 +47,7 @@ embeddings_test, labels_test = combined[div2:, :512], combined[div2:, 512]
 model = Sequential()
 model.add(Dense(512, activation='relu', input_dim=512, kernel_regularizer=regularizers.l2(reg)))
 model.add(Dense(1024, activation='relu', kernel_regularizer=regularizers.l2(reg)))
+model.add(Dense(512, activation='relu', kernel_regularizer=regularizers.l2(reg)))
 model.add(Dense(256, activation='relu', kernel_regularizer=regularizers.l2(reg)))
 model.add(Dense(128, activation='relu', kernel_regularizer=regularizers.l2(reg)))
 model.add(Dense(1, activation='sigmoid', kernel_regularizer=regularizers.l2(reg)))

@@ -25,7 +25,6 @@ def search(request):
     os.environ["TFHUB_CACHE_DIR"] = '/Users/johndang/tfhub'
     module_url = "https://tfhub.dev/google/universal-sentence-encoder/2"
     embed = hub.Module(module_url)
-    embed2 = hub.Module(module_url)
     print("downloaded USE TF hub module")
 
     if request.method == "POST":
