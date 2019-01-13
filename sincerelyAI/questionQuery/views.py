@@ -34,6 +34,7 @@ def search(request):
         if not request.POST.get('question_query'):
             print("yaa?")
             quchr = [request.body.decode('utf-8')]
+            question_embeddings = np.zeros((512,1))
 
             with tf.Session() as sess:
                 sess.run([tf.global_variables_initializer(), tf.tables_initializer()])
@@ -46,21 +47,21 @@ def search(request):
             sin = model.predict(question_embeddings)
             print(sin)
             if sin >= 0.5:
-                lrep = "Insincere"
+                lrep = "Insincere, with " + str(sin * 100) + " percent confidence."
             else:
-                lrep = "Sincere"
-
-
+                lrep = "Sincere, with " + str((1-sin) * 100) + " percent confidence."
+            
             return HttpResponse(lrep)
-
-
+        
+    
 
         if form.is_valid():
             model_instance = form.save(commit=False)
             model_instance.timestamp = timezone.now()
-            model_instance.save()
+            model_instance.save() 
 
             que = [Questions.objects.last().question_query]
+            question_embeddings = np.zeros((512,1))
 
             with tf.Session() as sess:
                 sess.run([tf.global_variables_initializer(), tf.tables_initializer()])
@@ -72,9 +73,9 @@ def search(request):
             sin = model.predict(question_embeddings)
             print(sin)
             if sin >= 0.5:
-                lForm = "Insincere"
+                lForm = "Insincere, with " + str(sin * 100) + " percent confidence."
             else:
-                lForm = "Sincere"
+                lForm = "Sincere, with " + str((1-sin) * 100) + " percent confidence."
 
             return render(request, "questionQuery/answer.html", {'lForm': lForm})
 
