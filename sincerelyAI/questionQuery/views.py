@@ -22,7 +22,7 @@ from keras import backend as K
 def search(request):
 
     print("USE TF hub module download started")
-    os.environ["TFHUB_CACHE_DIR"] = '/Users/johndang/tfhub'
+    os.environ["TFHUB_CACHE_DIR"] = '/Users/joshuayoung/Desktop/TFlow'
     module_url = "https://tfhub.dev/google/universal-sentence-encoder/2"
     embed = hub.Module(module_url)
     print("downloaded USE TF hub module")
@@ -42,7 +42,7 @@ def search(request):
                 question_embeddings = sess.run(embed(quchr))
                 print("created question embeddings")
 
-            model = load_model('/Users/johndang/git/SBHacks/sincerelyAI/questionQuery/final.h5')
+            model = load_model('/Users/joshuayoung/Desktop/SBHacksV/sincerelyAI/questionQuery/final.h5')
             lrep = ""
             sin = model.predict(question_embeddings)
             print(sin)
@@ -51,15 +51,15 @@ def search(request):
                 lrep = "Insincere, with " + str(sin * 100) + " percent confidence."
             else:
                 lrep = "Sincere, with " + str((1-sin) * 100) + " percent confidence."
-            
+
             return HttpResponse(lrep)
-        
-    
+
+
 
         if form.is_valid():
             model_instance = form.save(commit=False)
             model_instance.timestamp = timezone.now()
-            model_instance.save() 
+            model_instance.save()
 
             que = [Questions.objects.last().question_query]
 
@@ -69,7 +69,7 @@ def search(request):
                 question_embeddings = sess.run(embed(que))
                 print("created question embeddings")
 
-            model = load_model('/Users/johndang/git/SBHacks/sincerelyAI/questionQuery/final.h5')
+            model = load_model('/Users/joshuayoung/Desktop/SBHacksV/sincerelyAI/questionQuery/final.h5')
             sin = model.predict(question_embeddings)
             print(sin)
             K.clear_session()
