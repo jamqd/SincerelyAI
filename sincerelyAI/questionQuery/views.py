@@ -21,7 +21,7 @@ import json
 def search(request):
 
     print("USE TF hub module download started")
-    os.environ["TFHUB_CACHE_DIR"] = '/Users/billliu/tfhub'
+    os.environ["TFHUB_CACHE_DIR"] = '/Users/joshuayoung/Desktop/TFlow'
     module_url = "https://tfhub.dev/google/universal-sentence-encoder/2"
     embed = hub.Module(module_url)
     print("downloaded USE TF hub module")
@@ -91,6 +91,6 @@ def result(request):
 
     return HttpResponse(Questions.objects.last())
 
-def history(request):
-    query_results = Questions.objects.all()
-    return render(request, "questionQuery/history.html", {'history': query_results[:10]})
+#def history(request):
+#    query_results = Questions.objects.all()
+#    return render(request, "questionQuery/history.html", {'history': query_results[:10]})
