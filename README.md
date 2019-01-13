@@ -12,7 +12,7 @@ To activate environment run
 
 `source activate quora`
 
-From the SincerelyAI/sincerelyAI directory run
+From the sincerelyAI directory run
 
 `python manage.py runserver`
 

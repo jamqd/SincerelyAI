@@ -1,9 +1,0 @@
-{% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'add/style.css' %}">
-
-<form action="/add/" method="post">
-    <label for="add">Your sentence: </label>
-    <input id="add" type="text" name="add" value="{{ current_sentence }}">
-    <input type="submit" value="OK">
-</form>
