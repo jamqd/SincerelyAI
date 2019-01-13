@@ -1,9 +1,0 @@
-<h1>{{ question.question_text }}</h1>
-
-<ul>
-    {% for equation in question.choice_set.add %} 
-    <li>{{ equation.choice_text }} -- {{ equation.votes }} vote{{ equation.votes|pluralize}}</li>
-    {% endfor %}
-</ul>
-
-<a href="{% url 'add:detail' question.id %}">Vote again?</a>
