@@ -1,4 +1,8 @@
-# SBHacks
+# Sincereley, AI
+
+Created by:  John Dang, Bill Liu, Joshua Young, and Justin Shao
+
+Sincerley, AI is a deep learning project with the goal of identifying insincere text.
 
 To create conda environment run the following command from the repo directory.
 
@@ -8,4 +12,8 @@ To activate environment run
 
 `source activate quora`
 
-Activate the environment when running any code requiring packages from this environment.
+From the SincerelyAI/sincerelyAI directory run
+
+`python manage.py runserver`
+
+to run the web app.
