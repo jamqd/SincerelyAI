@@ -1,4 +1,4 @@
-# Sincereley, AI
+# Sincerely, AI
 
 Created by:  John Dang, Bill Liu, Joshua Young, and Justin Shao
 

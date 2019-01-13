@@ -22,7 +22,7 @@ from keras import backend as K
 def search(request):
 
     print("USE TF hub module download started")
-    os.environ["TFHUB_CACHE_DIR"] = '/Users/billliu/tfhub'
+    #os.environ["TFHUB_CACHE_DIR"] = '/Users/billliu/tfhub'
     module_url = "https://tfhub.dev/google/universal-sentence-encoder/2"
     embed = hub.Module(module_url)
     print("downloaded USE TF hub module")
