@@ -16,14 +16,16 @@ import tensorflow_hub as hub
 import numpy as np
 import os
 import json
+from keras import backend as K
 
 @csrf_exempt
 def search(request):
 
     print("USE TF hub module download started")
-    os.environ["TFHUB_CACHE_DIR"] = '/Users/joshuayoung/Desktop/TFlow'
+    os.environ["TFHUB_CACHE_DIR"] = '/Users/johndang/tfhub'
     module_url = "https://tfhub.dev/google/universal-sentence-encoder/2"
     embed = hub.Module(module_url)
+    embed2 = hub.Module(module_url)
     print("downloaded USE TF hub module")
 
     if request.method == "POST":
@@ -34,7 +36,6 @@ def search(request):
         if not request.POST.get('question_query'):
             print("yaa?")
             quchr = [request.body.decode('utf-8')]
-            question_embeddings = np.zeros((512,1))
 
             with tf.Session() as sess:
                 sess.run([tf.global_variables_initializer(), tf.tables_initializer()])
@@ -42,10 +43,11 @@ def search(request):
                 question_embeddings = sess.run(embed(quchr))
                 print("created question embeddings")
 
-            model = load_model('/Users/billliu/Downloads/SBHacksV/sincerelyAI/questionQuery/final.h5')
+            model = load_model('/Users/johndang/git/SBHacks/sincerelyAI/questionQuery/final.h5')
             lrep = ""
             sin = model.predict(question_embeddings)
             print(sin)
+            K.clear_session()
             if sin >= 0.5:
                 lrep = "Insincere, with " + str(sin * 100) + " percent confidence."
             else:
@@ -61,7 +63,6 @@ def search(request):
             model_instance.save() 
 
             que = [Questions.objects.last().question_query]
-            question_embeddings = np.zeros((512,1))
 
             with tf.Session() as sess:
                 sess.run([tf.global_variables_initializer(), tf.tables_initializer()])
@@ -69,9 +70,10 @@ def search(request):
                 question_embeddings = sess.run(embed(que))
                 print("created question embeddings")
 
-            model = load_model('/Users/billliu/Downloads/SBHacksV/sincerelyAI/questionQuery/final.h5')
+            model = load_model('/Users/johndang/git/SBHacks/sincerelyAI/questionQuery/final.h5')
             sin = model.predict(question_embeddings)
             print(sin)
+            K.clear_session()
             if sin >= 0.5:
                 lForm = "Insincere, with " + str(sin * 100) + " percent confidence."
             else:
