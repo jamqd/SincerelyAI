@@ -23,11 +23,11 @@ def search(request):
         #print("downloaded USE TF hub module")
 
         form = MyQuestionForm(request.POST)
-        
+
         if not request.POST.get('question_query'):
             print("yaa?")
             return HttpResponse(request.body.decode('utf-8'))
-        
+
 
         if form.is_valid():
             model_instance = form.save(commit=False)
@@ -61,3 +61,7 @@ def result(request):
         return render(request, "questionQuery/question.html", {'form': form})
 
     return HttpResponse(Questions.objects.last())
+
+def history(request):
+    query_results = Questions.objects.all()
+    return render(request, "questionQuery/history.html", {'history': query_results[:10]})

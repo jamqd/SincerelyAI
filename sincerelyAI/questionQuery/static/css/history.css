@@ -23,3 +23,8 @@ button
   color: #FFF;
   border-radius: 6px;
 }
+
+h1
+{
+  padding-right: 10vw;
+}
