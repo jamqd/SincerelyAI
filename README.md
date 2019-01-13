@@ -12,26 +12,23 @@ Sincerley, AI is a deep learning project with the goal of identifying insincere 
 
 ![Website Landing Page](webapp.png)
 
-To create conda environment run the following command from the repo directory. 
+1. To create conda environment run the following command from the repo directory.  
+    
+    `conda create --name quora --file requirements.txt`
 
-`conda create --name quora --file requirements.txt`
-
-
-
-To activate environment run 
-`source activate quora`
-
-**Note:** Users running the demo on a machine with a cuda enabled (Nvidia) GPU should run
-
-`conda install tensorflow-gpu`
-
-for significantly faster inference time.
-
-
-
-
-From the sincerelyAI directory run
-
-`python manage.py runserver`
-
-to run the web app.
+2. To activate environment run  
+    
+    `source activate quora`  
+    
+    **Note:** Users running the demo on a machine with a cuda enabled (Nvidia) GPU should run  
+    
+    `conda install tensorflow-gpu`  
+    
+    for significantly faster inference time.
+  
+  
+3. From the sincerelyAI directory run  
+    
+    `python manage.py runserver`  
+      
+      to run the web app.
