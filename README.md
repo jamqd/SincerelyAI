@@ -20,17 +20,13 @@ To create conda environment run the following command from the repo directory.
 To activate environment run 
 `source activate quora`
 
-<<<<<<< HEAD
 **Note:** Users running the demo on a machine with a cuda enabled (Nvidia) GPU should run
 
 `conda install tensorflow-gpu`
 
 for significantly faster inference time.
 
-From the SincerelyAI/sincerelyAI directory run
-=======
 From the sincerelyAI directory run
->>>>>>> e449cde4414e94245b81fbb2bb45f25e51c383b5
 
 `python manage.py runserver`
 
