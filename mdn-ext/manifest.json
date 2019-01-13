@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "Sincerely, AI v2",
+    "description": "A sample extension to get the selected text",
+    "version": "0.5",
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "activeTab",
+        "http://*/"
+    ],
+    "commands": {
+      "_execute_browser_action": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+O",
+          "mac": "Command+Shift+O"
+        },
+        "description": "Opens popup.html"
+      }
+    }
+}

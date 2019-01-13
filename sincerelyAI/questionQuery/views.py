@@ -22,7 +22,7 @@ from keras import backend as K
 def search(request):
 
     print("USE TF hub module download started")
-    os.environ["TFHUB_CACHE_DIR"] = '/Users/joshuayoung/Desktop/TFlow'
+    #os.environ["TFHUB_CACHE_DIR"] = '/Users/billliu/tfhub'
     module_url = "https://tfhub.dev/google/universal-sentence-encoder/2"
     embed = hub.Module(module_url)
     print("downloaded USE TF hub module")
@@ -42,15 +42,15 @@ def search(request):
                 question_embeddings = sess.run(embed(quchr))
                 print("created question embeddings")
 
-            model = load_model('/Users/joshuayoung/Desktop/SBHacksV/sincerelyAI/questionQuery/final.h5')
+            model = load_model('/Users/billliu/Desktop/SBHacksV/sincerelyAI/questionQuery/final.h5')
             lrep = ""
             sin = model.predict(question_embeddings)
             print(sin)
             K.clear_session()
             if sin >= 0.5:
-                lrep = "Insincere, with " + str(sin * 100) + " percent confidence."
+                lrep = "We think that question was INSINCERE!"
             else:
-                lrep = "Sincere, with " + str((1-sin) * 100) + " percent confidence."
+                lrep = "We think that question was SINCERE!"
 
             return HttpResponse(lrep)
 
@@ -69,14 +69,14 @@ def search(request):
                 question_embeddings = sess.run(embed(que))
                 print("created question embeddings")
 
-            model = load_model('/Users/joshuayoung/Desktop/SBHacksV/sincerelyAI/questionQuery/final.h5')
+            model = load_model('/Users/billliu/Desktop/SBHacksV/sincerelyAI/questionQuery/final.h5')
             sin = model.predict(question_embeddings)
             print(sin)
             K.clear_session()
             if sin >= 0.5:
-                lForm = "Insincere, with " + str(sin * 100) + " percent confidence."
+                lrep = "We think that question was INSINCERE!"
             else:
-                lForm = "Sincere, with " + str((1-sin) * 100) + " percent confidence."
+                lrep = "We think that question was SINCERE!"
 
             return render(request, "questionQuery/answer.html", {'lForm': lForm})
 
