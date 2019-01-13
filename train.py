@@ -13,7 +13,7 @@ reg = 0.00
 
 print("loading data")
 
-embeddingsR = pd.read_csv("question_embeddings0.csv")
+embeddingsR = pd.read_csv("data/question_embeddings_full.csv")
 embeddings = embeddingsR.values
 
 labelsR = pd.read_csv("data/train.csv")
