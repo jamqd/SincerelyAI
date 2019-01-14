@@ -22,7 +22,7 @@ from keras import backend as K
 def search(request):
 
     print("USE TF hub module download started")
-    #os.environ["TFHUB_CACHE_DIR"] = '/Users/billliu/tfhub'
+    os.environ["TFHUB_CACHE_DIR"] = '/Users/johndang/tfhub'
     module_url = "https://tfhub.dev/google/universal-sentence-encoder/2"
     embed = hub.Module(module_url)
     print("downloaded USE TF hub module")
@@ -42,7 +42,7 @@ def search(request):
                 question_embeddings = sess.run(embed(quchr))
                 print("created question embeddings")
 
-            model = load_model('/Users/billliu/Desktop/SBHacksV/sincerelyAI/questionQuery/final.h5')
+            model = load_model('/Users/johndang/git/SBHacks/sincerelyAI/questionQuery/final.h5')
             lrep = ""
             sin = model.predict(question_embeddings)
             print(sin)
@@ -69,7 +69,7 @@ def search(request):
                 question_embeddings = sess.run(embed(que))
                 print("created question embeddings")
 
-            model = load_model('/Users/billliu/Desktop/SBHacksV/sincerelyAI/questionQuery/final.h5')
+            model = load_model('/Users/johndang/git/SBHacks/sincerelyAI/questionQuery/final.h5')
             sin = model.predict(question_embeddings)
             print(sin)
             K.clear_session()
@@ -78,7 +78,7 @@ def search(request):
             else:
                 lrep = "We think that question was SINCERE!"
 
-            return render(request, "questionQuery/answer.html", {'lForm': lForm})
+            return render(request, "questionQuery/answer.html", {'lForm': lrep})
 
     else:
 
