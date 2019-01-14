@@ -66,8 +66,8 @@ from twilio.rest import Client
 
 def m_out(phoneNumber, message):
 # Your Account Sid and Auth Token from twilio.com/console
-    account_sid = 'AC0010d9684b58f7b876bc11079e29c008'
-    auth_token = 'a6666b0559096aa1f5e0ce93c0671f96'
+    #account_sid = AUTH_ID
+    #auth_token = AUTH_TOKEN
     client = Client(account_sid, auth_token)
 
     message = client.messages \
